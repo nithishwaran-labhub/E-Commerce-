@@ -25,6 +25,8 @@
     "img": "products/bag1.jpg",
     "description": "Stylish leather bag for work or travel.",
     "rating": 4.2
-  }
-]
-
+  },
+  {
+    "id": 4,
+    "name": "Casual Sneakers",
+    "price": 1500,
