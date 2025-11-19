@@ -62,7 +62,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
   <script>
-    // ===== Firebase Config =====
+    // Firebase Config
     const firebaseConfig = {
       apiKey: "YOUR_API_KEY",
       authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
@@ -75,14 +75,12 @@
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
-    // ===== Check Login =====
+    // Login check
     auth.onAuthStateChanged(user => {
-      if (!user) {
-        window.location.href = "login.html";
-      }
+      if (!user) window.location.href = "login.html";
     });
 
-    // ===== Logout =====
+    // Logout
     function logout() {
       auth.signOut().then(() => {
         alert("Logged out successfully!");
@@ -91,8 +89,6 @@
     }
   </script>
 
-  <!-- Main Script -->
   <script src="script.js"></script>
-
 </body>
 </html>
