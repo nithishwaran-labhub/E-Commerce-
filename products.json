@@ -6,4 +6,12 @@
   {"id":5,"name":"Sunglasses","price":800,"img":"products/accessory1.jpg","category":"accessories"},
   {"id":6,"name":"Formal Shoes","price":2500,"img":"products/shoes2.jpg","category":"shoes"},
   {"id":7,"name":"Digital Watch","price":2200,"img":"products/watch2.jpg","category":"watches"},
-  {"id":8,"name":"Handbag","price":1800,"img":"products/bag2
+  {"id":8,"name":"Handbag","price":1800,"img":"products/bag2.jpg","category":"bags"},
+  {"id":9,"name":"Bluetooth Speaker","price":3000,"img":"products/electronics2.jpg","category":"electronics"},
+  {"id":10,"name":"Cap","price":500,"img":"products/accessory2.jpg","category":"accessories"},
+  {"id":11,"name":"Sports Shoes","price":1400,"img":"products/shoes3.jpg","category":"shoes"},
+  {"id":12,"name":"Smart Watch","price":5000,"img":"products/watch3.jpg","category":"watches"},
+  {"id":13,"name":"Laptop Bag","price":2200,"img":"products/bag3.jpg","category":"bags"},
+  {"id":14,"name":"Headphones","price":2500,"img":"products/electronics3.jpg","category":"electronics"},
+  {"id":15,"name":"Belt","price":700,"img":"products/accessory3.jpg","category":"accessories"}
+]
