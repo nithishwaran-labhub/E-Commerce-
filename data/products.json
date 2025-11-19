@@ -1,1 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Running Shoes",
+    "price": 1200,
+    "category": "Shoes",
+    "img": "products/shoes1.jpg",
+    "description": "Comfortable running shoes for everyday use.",
+    "rating": 4.5
+  },
+  {
+    "id": 2,
+    "name": "Smart Watch",
+    "price": 2500,
+    "category": "Electronics",
+    "img": "products/watch1.jpg",
+    "description": "Smart watch with heart rate monitor and GPS.",
+    "rating": 4.7
+  },
+  {
+    "id": 3,
+    "name": "Leather Bag",
+    "price": 3500,
+    "category": "Bags",
+    "img": "products/bag1.jpg",
+    "description": "Stylish leather bag for work or travel.",
+    "rating": 4.2
+  }
+]
 
