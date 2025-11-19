@@ -2,75 +2,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout - My E-Commerce Store</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body { font-family: Arial, sans-serif; background-color: #f5f5f5; }
-    .checkout-container {
-      max-width: 600px; margin: 50px auto; padding: 30px; background: white; border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-    .checkout-container h2 { text-align: center; color: #ff6f61; margin-bottom: 20px; }
-    .product-item { display: flex; justify-content: space-between; margin: 10px 0; }
-    .total { font-weight: bold; font-size: 18px; text-align: right; margin-top: 20px; }
-    #payButton { display: block; width: 100%; padding: 15px; margin-top: 20px; background-color: #ff6f61; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
-    #payButton:hover { background-color: #ff3b2f; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout</title>
+<style>
+body{font-family:Arial;background:#f5f5f5;}
+.checkout-container{max-width:600px;margin:50px auto;padding:30px;background:white;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.2);}
+.checkout-container h2{text-align:center;color:#ff6f61;margin-bottom:20px;}
+.product-item{display:flex;justify-content:space-between;margin:10px 0;}
+.total{text-align:right;font-weight:bold;font-size:18px;margin-top:20px;}
+#payButton{display:block;width:100%;padding:15px;margin-top:20px;background:#ff6f61;color:white;border:none;border-radius:5px;font-size:16px;cursor:pointer;}
+#payButton:hover{background:#ff3b2f;}
+</style>
 </head>
 <body>
 
-  <div class="checkout-container">
-    <h2>Checkout</h2>
-    <div id="checkout-products"></div>
-    <div class="total" id="totalAmount">Total: ₹0</div>
-    <button id="payButton">Pay Now</button>
-  </div>
+<div class="checkout-container">
+<h2>Checkout</h2>
+<div id="checkout-products"></div>
+<div class="total" id="totalAmount">Total: ₹0</div>
+<button id="payButton">Pay Now</button>
+</div>
 
-  <!-- Razorpay SDK -->
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+let cart=JSON.parse(localStorage.getItem("cart"))||[];
+const container=document.getElementById("checkout-products");
+const totalElement=document.getElementById("totalAmount");
+let total=0;
+if(cart.length===0){ container.innerHTML="<p>Your cart is empty!</p>"; document.getElementById("payButton").disabled=true; }
+else{
+cart.forEach(item=>{ container.innerHTML+=`<div class="product-item"><span>${item.name}</span><span>₹${item.price}</span></div>`; total+=item.price; });
+totalElement.innerText=`Total: ₹${total}`;
+}
 
-  <script>
-    // ====== Load Cart from localStorage ======
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const container = document.getElementById("checkout-products");
-    const totalElement = document.getElementById("totalAmount");
-    let total = 0;
-
-    if(cart.length === 0){
-      container.innerHTML = "<p>Your cart is empty!</p>";
-      document.getElementById("payButton").disabled = true;
-    } else {
-      cart.forEach(item => {
-        container.innerHTML += `<div class="product-item"><span>${item.name}</span><span>₹${item.price}</span></div>`;
-        total += item.price;
-      });
-      totalElement.innerText = `Total: ₹${total}`;
-    }
-
-    // ====== Razorpay Payment ======
-    document.getElementById("payButton").onclick = function(e){
-      if(cart.length === 0) return;
-
-      var options = {
-        "key": "YOUR_RAZORPAY_KEY", // Replace with your Razorpay key
-        "amount": total * 100, // Amount in paise
-        "currency": "INR",
-        "name": "My E-Commerce Store",
-        "description": "Purchase",
-        "handler": function(response){
-          alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
-          localStorage.removeItem("cart"); // Clear cart after payment
-          window.location.href = "index.html"; // redirect to home page
-        },
-        "theme": { "color": "#ff6f61" }
-      };
-      var rzp = new Razorpay(options);
-      rzp.open();
-      e.preventDefault();
-    }
-  </script>
-
+document.getElementById("payButton").onclick=function(e){
+if(cart.length===0) return;
+var options={
+  "key":"YOUR_RAZORPAY_KEY",
+  "amount":total*100,
+  "currency":"INR",
+  "name":"My E-Commerce Store",
+  "description":"Purchase",
+  "handler":function(response){
+    alert("Payment Successful! ID: "+response.razorpay_payment_id);
+    localStorage.removeItem("cart");
+    window.location.href="index.html";
+  },
+  "theme":{"color":"#ff6f61"}
+};
+var rzp=new Razorpay(options);
+rzp.open();
+e.preventDefault();
+}
+</script>
 </body>
 </html>
