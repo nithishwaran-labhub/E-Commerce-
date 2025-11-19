@@ -1,21 +1,27 @@
-let products = []; // Will store products from JSON
+let products = [];
+let filteredProducts = [];
 
 // Fetch products from products.json
 fetch('products.json')
   .then(response => response.json())
   .then(data => {
     products = data;
-    displayProducts(products); // Display all products
+    filteredProducts = products;
+    displayProducts(filteredProducts);
   })
   .catch(err => console.error('Error loading products:', err));
 
 // Display products in a grid
 function displayProducts(productsArray) {
   const container = document.getElementById('products-container');
-  container.innerHTML = ''; // Clear previous content
+  container.innerHTML = '';
+
+  if(productsArray.length === 0){
+    container.innerHTML = '<p style="grid-column:1/-1;text-align:center;">No products found</p>';
+    return;
+  }
 
   productsArray.forEach(product => {
-    // Create product card
     const productCard = document.createElement('div');
     productCard.className = 'product-card';
     productCard.innerHTML = `
@@ -31,7 +37,7 @@ function displayProducts(productsArray) {
   });
 }
 
-// Cart & Wishlist functionality (simple for demo)
+// Cart & Wishlist
 let cart = [];
 let wishlist = [];
 
@@ -49,4 +55,18 @@ function addToWishlist(id) {
     wishlist.push(product);
     alert(`${product.name} added to wishlist!`);
   }
+}
+
+// Filter products by search & category
+function filterProducts() {
+  const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+  const category = document.getElementById('categoryFilter').value;
+
+  filteredProducts = products.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(searchTerm);
+    const matchesCategory = category === 'all' || product.category === category;
+    return matchesSearch && matchesCategory;
+  });
+
+  displayProducts(filteredProducts);
 }
