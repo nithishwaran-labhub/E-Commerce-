@@ -1,18 +1,9 @@
 [
-  { "id": 1, "name": "Running Shoes", "price": 1200, "img": "products/shoes1.jpg", "category": "shoes" },
-  { "id": 2, "name": "Smart Watch", "price": 2500, "img": "products/watch1.jpg", "category": "watches" },
-  { "id": 3, "name": "Backpack", "price": 800, "img": "products/backpack1.jpg", "category": "bags" },
-  { "id": 4, "name": "Leather Wallet", "price": 500, "img": "products/wallet1.jpg", "category": "accessories" },
-  { "id": 5, "name": "Headphones", "price": 1500, "img": "products/headphones1.jpg", "category": "electronics" },
-  { "id": 6, "name": "Sunglasses", "price": 700, "img": "products/sunglasses1.jpg", "category": "accessories" },
-  { "id": 7, "name": "Formal Shoes", "price": 2000, "img": "products/shoes2.jpg", "category": "shoes" },
-  { "id": 8, "name": "Fitness Band", "price": 1800, "img": "products/watch2.jpg", "category": "watches" },
-  { "id": 9, "name": "Tote Bag", "price": 950, "img": "products/backpack2.jpg", "category": "bags" },
-  { "id": 10, "name": "Wireless Mouse", "price": 600, "img": "products/mouse1.jpg", "category": "electronics" },
-  { "id": 11, "name": "Beanie Cap", "price": 300, "img": "products/cap1.jpg", "category": "accessories" },
-  { "id": 12, "name": "Casual Sneakers", "price": 1400, "img": "products/shoes3.jpg", "category": "shoes" },
-  { "id": 13, "name": "Digital Watch", "price": 2200, "img": "products/watch3.jpg", "category": "watches" },
-  { "id": 14, "name": "Laptop Bag", "price": 1800, "img": "products/backpack3.jpg", "category": "bags" },
-  { "id": 15, "name": "Bluetooth Speaker", "price": 1600, "img": "products/speaker1.jpg", "category": "electronics" }
-]
-
+  {"id":1,"name":"Running Shoes","price":1200,"img":"products/shoes1.jpg","category":"shoes"},
+  {"id":2,"name":"Leather Watch","price":3500,"img":"products/watch1.jpg","category":"watches"},
+  {"id":3,"name":"Backpack","price":1500,"img":"products/bag1.jpg","category":"bags"},
+  {"id":4,"name":"Wireless Earbuds","price":2000,"img":"products/electronics1.jpg","category":"electronics"},
+  {"id":5,"name":"Sunglasses","price":800,"img":"products/accessory1.jpg","category":"accessories"},
+  {"id":6,"name":"Formal Shoes","price":2500,"img":"products/shoes2.jpg","category":"shoes"},
+  {"id":7,"name":"Digital Watch","price":2200,"img":"products/watch2.jpg","category":"watches"},
+  {"id":8,"name":"Handbag","price":1800,"img":"products/bag2
