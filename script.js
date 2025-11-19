@@ -1,28 +1,52 @@
-// ======== Global Variables ========
-let products = [];
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+let products = []; // Will store products from JSON
 
-// ======== Fetch Products from JSON ========
-fetch("data/products.json")
-    .then(response => response.json())
-    .then(data => {
-        products = data;
-        displayProducts();      // Home page
-        displayCart();          // Cart page
-        displayWishlist();      // Wishlist page
-        displayProductDetails();// Product detail page
-        updateCounts();
-    })
-    .catch(error => console.error("Error loading products:", error));
+// Fetch products from products.json
+fetch('products.json')
+  .then(response => response.json())
+  .then(data => {
+    products = data;
+    displayProducts(products); // Display all products
+  })
+  .catch(err => console.error('Error loading products:', err));
 
-// ======== Display Products on Home Page ========
-function displayProducts() {
-    const productList = document.getElementById("product-list");
-    if(!productList) return;
+// Display products in a grid
+function displayProducts(productsArray) {
+  const container = document.getElementById('products-container');
+  container.innerHTML = ''; // Clear previous content
 
-    productList.innerHTML = "";
+  productsArray.forEach(product => {
+    // Create product card
+    const productCard = document.createElement('div');
+    productCard.className = 'product-card';
+    productCard.innerHTML = `
+      <img src="${product.img}" alt="${product.name}" class="product-img">
+      <h3 class="product-name">${product.name}</h3>
+      <p class="product-price">₹${product.price}</p>
+      <div class="product-buttons">
+        <button onclick="addToCart(${product.id})">Add to Cart</button>
+        <button onclick="addToWishlist(${product.id})">Add to Wishlist</button>
+      </div>
+    `;
+    container.appendChild(productCard);
+  });
+}
 
-    products.forEach(product => {
-        const card = document.
+// Cart & Wishlist functionality (simple for demo)
+let cart = [];
+let wishlist = [];
 
+function addToCart(id) {
+  const product = products.find(p => p.id === id);
+  if (product) {
+    cart.push(product);
+    alert(`${product.name} added to cart!`);
+  }
+}
+
+function addToWishlist(id) {
+  const product = products.find(p => p.id === id);
+  if (product) {
+    wishlist.push(product);
+    alert(`${product.name} added to wishlist!`);
+  }
+}
