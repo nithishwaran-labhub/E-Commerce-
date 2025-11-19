@@ -23,19 +23,35 @@
       position: relative;
     }
 
-    #cartButton {
+    #cartButton, #checkoutButton, #logoutButton {
       position: absolute;
-      right: 20px;
       top: 15px;
-      background-color: #fff;
-      color: #ff6f61;
-      border: none;
       padding: 8px 12px;
+      border: none;
       border-radius: 5px;
       cursor: pointer;
+      font-weight: bold;
     }
 
-    #cartButton:hover {
+    #cartButton {
+      right: 150px;
+      background-color: #fff;
+      color: #ff6f61;
+    }
+
+    #checkoutButton {
+      right: 80px;
+      background-color: #fff;
+      color: #ff6f61;
+    }
+
+    #logoutButton {
+      right: 10px;
+      background-color: #fff;
+      color: #ff6f61;
+    }
+
+    #cartButton:hover, #checkoutButton:hover, #logoutButton:hover {
       background-color: #ffe5e0;
     }
 
@@ -115,6 +131,8 @@
   <header>
     My E-Commerce Store
     <button id="cartButton" onclick="viewCart()">Cart (<span id="cart-count">0</span>)</button>
+    <button id="checkoutButton" onclick="window.location.href='checkout.html'">Checkout</button>
+    <button id="logoutButton" onclick="logout()">Logout</button>
   </header>
 
   <!-- Controls: Search + Category Filter + Sort -->
@@ -143,7 +161,42 @@
     &copy; 2025 My E-Commerce Store | All Rights Reserved
   </footer>
 
-  <!-- Script -->
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+  <script>
+    // ======= Firebase Config =======
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // ======= Check Login =======
+    auth.onAuthStateChanged(user => {
+      if (!user) {
+        // Redirect to login if not logged in
+        window.location.href = "login.html";
+      }
+    });
+
+    // ======= Logout Function =======
+    function logout() {
+      auth.signOut().then(() => {
+        alert("Logged out successfully!");
+        window.location.href = "login.html";
+      });
+    }
+  </script>
+
+  <!-- Main Script -->
   <script src="script.js"></script>
 
 </body>
