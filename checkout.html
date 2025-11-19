@@ -1,1 +1,54 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - My Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2 style="text-align:center;">Checkout</h2>
+  <div id="checkout-container" style="margin: 20px;"></div>
+  <button id="payButton" style="margin:20px;padding:10px 20px;background-color:#ff6f61;color:white;border:none;border-radius:5px;cursor:pointer;">Pay Now</button>
+
+  <!-- Razorpay Checkout -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    // Load cart from localStorage
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const container = document.getElementById("checkout-container");
+    let total = 0;
+
+    if(cart.length === 0){
+      container.innerHTML = "<p>Your cart is empty!</p>";
+    } else {
+      cart.forEach(item => {
+        container.innerHTML += `<p>${item.name} - ₹${item.price}</p>`;
+        total += item.price;
+      });
+      container.innerHTML += `<h3>Total: ₹${total}</h3>`;
+    }
+
+    document.getElementById("payButton").onclick = function(e){
+      if(cart.length === 0) return;
+      var options = {
+        "key": "YOUR_RAZORPAY_KEY",
+        "amount": total*100, // in paise
+        "currency": "INR",
+        "name": "My E-Commerce Store",
+        "description": "Purchase",
+        "handler": function(response){
+          alert("Payment successful. Payment ID: " + response.razorpay_payment_id);
+          localStorage.removeItem("cart"); // clear cart after payment
+          window.location.href = "index.html";
+        }
+      };
+      var rzp = new Razorpay(options);
+      rzp.open();
+      e.preventDefault();
+    }
+  </script>
+</body>
+</html>
+
