@@ -6,7 +6,6 @@
   <title>My E-Commerce Store</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Basic CSS for product grid */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -23,11 +22,24 @@
       font-weight: bold;
     }
 
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+      flex-wrap: wrap;
+    }
+
+    .controls input, .controls select {
+      padding: 10px;
+      font-size: 16px;
+      margin: 5px 0;
+    }
+
     #products-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
-      margin: 20px;
+      margin: 0 20px 20px 20px;
     }
 
     .product-card {
@@ -85,6 +97,19 @@
   <header>
     My E-Commerce Store
   </header>
+
+  <!-- Controls: Search + Category Filter -->
+  <div class="controls">
+    <input type="text" id="searchInput" placeholder="Search products..." onkeyup="filterProducts()">
+    <select id="categoryFilter" onchange="filterProducts()">
+      <option value="all">All Categories</option>
+      <option value="shoes">Shoes</option>
+      <option value="watches">Watches</option>
+      <option value="bags">Bags</option>
+      <option value="electronics">Electronics</option>
+      <option value="accessories">Accessories</option>
+    </select>
+  </div>
 
   <!-- Product Grid -->
   <div id="products-container"></div>
