@@ -20,6 +20,23 @@
       text-align: center;
       font-size: 24px;
       font-weight: bold;
+      position: relative;
+    }
+
+    #cartButton {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      background-color: #fff;
+      color: #ff6f61;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #cartButton:hover {
+      background-color: #ffe5e0;
     }
 
     .controls {
@@ -27,6 +44,7 @@
       justify-content: space-between;
       margin: 20px;
       flex-wrap: wrap;
+      gap: 10px;
     }
 
     .controls input, .controls select {
@@ -96,9 +114,10 @@
   <!-- Header -->
   <header>
     My E-Commerce Store
+    <button id="cartButton" onclick="viewCart()">Cart (<span id="cart-count">0</span>)</button>
   </header>
 
-  <!-- Controls: Search + Category Filter -->
+  <!-- Controls: Search + Category Filter + Sort -->
   <div class="controls">
     <input type="text" id="searchInput" placeholder="Search products..." onkeyup="filterProducts()">
     <select id="categoryFilter" onchange="filterProducts()">
@@ -108,6 +127,11 @@
       <option value="bags">Bags</option>
       <option value="electronics">Electronics</option>
       <option value="accessories">Accessories</option>
+    </select>
+    <select id="sortPrice" onchange="filterProducts()">
+      <option value="none">Sort by Price</option>
+      <option value="low">Low to High</option>
+      <option value="high">High to Low</option>
     </select>
   </div>
 
